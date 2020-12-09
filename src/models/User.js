@@ -14,6 +14,7 @@ const UserSchema = new Schema({
     },
     password: {
         type: String,
+        select: false,
         required: true,
     },
     deleted: {
@@ -27,5 +28,14 @@ const UserSchema = new Schema({
 UserSchema.pre('save', async function () {
     this.password = await bcrypt.hash(this.password, 8);
 });
+
+UserSchema.methods.show = function () {
+    return {
+        _id: this._id,
+        name: this.name,
+        email: this.email,
+        deleted: this.deleted,
+    }
+};
 
 export default model('User', UserSchema);

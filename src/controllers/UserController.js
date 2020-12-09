@@ -6,7 +6,7 @@ class UserController {
         const { name, email, password } = req.body;
         const user = await User.create({ name, email, password });
         
-        return res.json({ user });
+        return res.json({ user: user.show() });
     }
 }
 
