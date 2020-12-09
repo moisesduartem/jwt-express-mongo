@@ -3,6 +3,6 @@ import UserController from './controllers/UserController';
 
 const routes = new Router();
 
-routes.get('/', (req, res) => res.json("hello world!"));
+routes.post('/register', UserController.store);
 
 export default routes;
